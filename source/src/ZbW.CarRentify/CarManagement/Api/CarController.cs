@@ -22,31 +22,33 @@ namespace ZbW.CarRentify.CarManagement.Api
         [HttpGet]
         public IEnumerable<CarDTO> Get()
         {
-            return new[] {
-                new CarDTO { Name = "Mercedes Benz"},
-                new CarDTO { Name = "Bugatti" }
-            };
+            var result = _carService.Get().Select(x=>x.ToDto());
+            return result;
         }
 
         [HttpGet("{id}", Name = "GetCar")]
         public CarDTO Get(Guid id)
         {
-            return new CarDTO { Name = "Bugatti" };
+            var result = _carService.Get(id).ToDto();
+            return result;
         }
 
         [HttpPost]
         public void Post([FromBody] CarDTO car)
         {
+            _carService.Insert(car.ToObject());
         }
 
         [HttpPut("{id}")]
         public void Put(Guid id, [FromBody] CarDTO car)
         {
+            _carService.Update(car.ToObject(),id);
         }
 
         [HttpDelete("{id}")]
         public void Delete(Guid id)
         {
+            _carService.Delete(id);
         }
     }
 }

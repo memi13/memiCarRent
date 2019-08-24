@@ -7,7 +7,8 @@ namespace ZbW.CarRentify.Common
 {
     public interface IRepository<TEntity>
         where TEntity : EntityBase
-    { 
+    {
+        
         IEnumerable<TEntity> GetAll();
 
         TEntity Get(Guid id);

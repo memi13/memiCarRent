@@ -14,6 +14,16 @@ namespace ZbW.CarRentify.Common
             _id = Guid.NewGuid();
         }
 
+        protected EntityBase(Guid id)
+        {
+            _id = id;
+        }
+        public int PublicId { get; set; }
+        public  string EditFrom { get; set; }
+        public  DateTime Edit { get; set; }
+        public  string CreateFrom { get; set; }
+        public DateTime Create { get; set; }
+
         public Guid Id => _id;
 
         public override bool Equals(object obj)
