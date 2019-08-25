@@ -41,7 +41,7 @@ namespace ZbW.CarRentify.CarManagement.Services
 
         public void Delete(Guid id)
         {
-            var car=new Car();
+            var car=new Car(id);
         
             _carRepository.Delete(car);
         }

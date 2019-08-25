@@ -9,16 +9,25 @@ namespace ZbW.CarRentify.CarManagement.Api
 {
     public class CarDTO
     {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
+        [JsonProperty("description")]
+        public string Description { get; set; }
+        [JsonProperty("InOperationSince")]
+        public DateTime InOperationSince { get; set; }
         public Guid id { get; set; }
         public  int PublicId { get; set; }
+        [JsonProperty("HorsePower")]
+        public  int HorsePower { get; set; }
+        [JsonProperty("ModelId")]
 
-
+        public Guid ModelId { get; set; }
         public Car ToObject()
         {
-            return new Car();
+            var car=new Car(id,new Model(ModelId));
+            car.Description = Description;
+            car.InOperationSince = InOperationSince;
+            car.PublicId = PublicId;
+            car.HorsPower = HorsePower;
+            return car;
         }
     }
 }

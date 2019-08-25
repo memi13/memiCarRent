@@ -12,22 +12,38 @@ namespace ZbW.CarRentify.CarManagement.Domain
         private readonly Model _model;
 
         public Model Model => _model;
-
+        public int HorsPower { get; set; }
+        public  DateTime InOperationSince { get; set; }
+        public  string Description { get; set; }
         public Car() : base()
+        {
+
+        }
+        public Car(Guid id) : base(id)
         {
 
         }
         public Car(Guid id,Model m):base(id)
         {
-           
+            _model = m;
         }
+
         public CarDTO ToDto()
         {
             var dto=new CarDTO();
             dto.id = this.Id;
             dto.PublicId = this.PublicId;
+            dto.HorsePower = this.HorsPower;
+            dto.Description = this.Description;
+            dto.InOperationSince = this.InOperationSince;
+            dto.ModelId = _model.Id;
 
             return dto;
+        }
+
+        public override string ToString()
+        {
+            return $"{Id.ToString()};{PublicId.ToString()};{Description};{HorsPower};{InOperationSince.ToString()};{EditFrom};{Edit};{CreateFrom};{Create}";
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ZbW.CarRentify.CarManagement.Domain;
 using ZbW.CarRentify.CarManagement.Services;
 
 namespace ZbW.CarRentify.CarManagement.Api
@@ -22,7 +23,7 @@ namespace ZbW.CarRentify.CarManagement.Api
         [HttpGet]
         public IEnumerable<CarDTO> Get()
         {
-            var result = _carService.Get().Select(x=>x.ToDto());
+            var result = _carService.Get().Select(x => x.ToDto());
             return result;
         }
 
@@ -42,7 +43,7 @@ namespace ZbW.CarRentify.CarManagement.Api
         [HttpPut("{id}")]
         public void Put(Guid id, [FromBody] CarDTO car)
         {
-            _carService.Update(car.ToObject(),id);
+            _carService.Update(car.ToObject(), id);
         }
 
         [HttpDelete("{id}")]
