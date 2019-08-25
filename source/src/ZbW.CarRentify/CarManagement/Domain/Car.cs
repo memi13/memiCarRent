@@ -28,9 +28,9 @@ namespace ZbW.CarRentify.CarManagement.Domain
             _model = m;
         }
 
-        public CarDTO ToDto()
+        public CarDto ToDto()
         {
-            var dto=new CarDTO();
+            var dto=new CarDto();
             dto.id = this.Id;
             dto.PublicId = this.PublicId;
             dto.HorsePower = this.HorsPower;

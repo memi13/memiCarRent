@@ -7,7 +7,7 @@ using ZbW.CarRentify.CarManagement.Domain;
 
 namespace ZbW.CarRentify.CarManagement.Api
 {
-    public class CarDTO
+    public class CarDto
     {
         [JsonProperty("description")]
         public string Description { get; set; }

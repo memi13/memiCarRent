@@ -4,52 +4,49 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ZbW.CarRentify.CarManagement.Domain;
 using ZbW.CarRentify.CarManagement.Services;
 
 namespace ZbW.CarRentify.CarManagement.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarController : ControllerBase
+    public class ModelController : ControllerBase
     {
-        private readonly ICarService _carService;
+        private readonly IModelService _modelService;
 
-        public CarController(ICarService carService)
+        public ModelController(IModelService modelService)
         {
-            _carService = carService;
+            _modelService = modelService;
         }
 
         [HttpGet]
         public IEnumerable<CarDto> Get()
         {
-            var result = _carService.Get().Select(x => x.ToDto());
-            return result;
+            throw new NotImplementedException();
         }
 
-        [HttpGet("{id}", Name = "GetCar")]
+        [HttpGet("{id}", Name = "GetModel")]
         public CarDto Get(Guid id)
         {
-            var result = _carService.Get(id).ToDto();
-            return result;
+            throw new NotImplementedException();
         }
 
         [HttpPost]
         public void Post([FromBody] CarDto car)
         {
-            _carService.Insert(car.ToObject());
+            throw new NotImplementedException();
         }
 
         [HttpPut("{id}")]
         public void Put(Guid id, [FromBody] CarDto car)
         {
-            _carService.Update(car.ToObject(), id);
+            throw new NotImplementedException();
         }
 
         [HttpDelete("{id}")]
         public void Delete(Guid id)
         {
-            _carService.Delete(id);
+            throw new NotImplementedException();
         }
     }
 }

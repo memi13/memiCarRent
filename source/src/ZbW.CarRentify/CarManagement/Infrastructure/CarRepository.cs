@@ -23,7 +23,7 @@ namespace ZbW.CarRentify.CarManagement.Infrastructure
 
         public void Delete(Car entity)
         {
-            File.Delete(paths+$"car_{entity.Id.ToString()}_.csv");
+            File.Delete(paths+$"Car_{entity.Id.ToString()}_.csv");
         }
 
         public Car Get(Guid id)
@@ -35,7 +35,7 @@ namespace ZbW.CarRentify.CarManagement.Infrastructure
             {
                 throw new EntityNotFoundException();
             }
-            var car= DataTableToCar(LoadeFile(filePaths[0]));
+            var car= DataTableToCar(FileSystem.LoadeFile(filePaths[0]));
             return car;
         }
 
@@ -45,7 +45,7 @@ namespace ZbW.CarRentify.CarManagement.Infrastructure
             string[] filePaths = Directory.GetFiles(paths, "*.csv");
             foreach (var path in filePaths)
             {
-                 cars.Add(DataTableToCar(LoadeFile(path)));
+                 cars.Add(DataTableToCar(FileSystem.LoadeFile(path)));
             }
 
             return cars;
@@ -57,7 +57,7 @@ namespace ZbW.CarRentify.CarManagement.Infrastructure
             entity.Edit = DateTime.UtcNow;
             entity.CreateFrom = "USER";
             entity.EditFrom = "USER";
-            CreatFile(header, entity);
+            FileSystem.CreatFile(header, entity, paths,"Car");
         }
 
         public void Update(Car entity)
@@ -84,37 +84,37 @@ namespace ZbW.CarRentify.CarManagement.Infrastructure
             newCar.Create = DateTime.Parse(row1.ItemArray[8].ToString());
             return newCar;
         }
-        private DataTable LoadeFile(string FilePaths)
-        {
-            DataTable dt = new DataTable();
-            FileStream aFile = new FileStream(FilePaths, FileMode.Open);
-            using (StreamReader sr = new StreamReader(aFile, System.Text.Encoding.Default))
-            {
-                string strLine = sr.ReadLine();
-                string[] strArray = strLine.Split(";");
+        //private DataTable LoadeFile(string FilePaths)
+        //{
+        //    DataTable dt = new DataTable();
+        //    FileStream aFile = new FileStream(FilePaths, FileMode.Open);
+        //    using (StreamReader sr = new StreamReader(aFile, System.Text.Encoding.Default))
+        //    {
+        //        string strLine = sr.ReadLine();
+        //        string[] strArray = strLine.Split(";");
 
-                foreach (string value in strArray)
-                    dt.Columns.Add(value.Trim());
-                DataRow dr = dt.NewRow();
+        //        foreach (string value in strArray)
+        //            dt.Columns.Add(value.Trim());
+        //        DataRow dr = dt.NewRow();
 
-                while (sr.Peek() > -1)
-                {
-                    strLine = sr.ReadLine();
-                    strArray = strLine.Split(";");
-                    dt.Rows.Add(strArray);
-                }
-                return dt;
-            }
-        }
+        //        while (sr.Peek() > -1)
+        //        {
+        //            strLine = sr.ReadLine();
+        //            strArray = strLine.Split(";");
+        //            dt.Rows.Add(strArray);
+        //        }
+        //        return dt;
+        //    }
+        //}
 
-        private void CreatFile(string Header,Car car)
-        {
-            var csv = new StringBuilder();
-            //in your loop
-            csv.AppendLine(Header);
-            csv.AppendLine(car.ToString());
-            //after your loop
-            File.WriteAllText(paths+$"Car_{car.Id.ToString()}_.csv", csv.ToString());
-        }
+        //private void CreatFile(string Header,Car car)
+        //{
+        //    var csv = new StringBuilder();
+        //    //in your loop
+        //    csv.AppendLine(Header);
+        //    csv.AppendLine(car.ToString());
+        //    //after your loop
+        //    File.WriteAllText(paths+$"Car_{car.Id.ToString()}_.csv", csv.ToString());
+        //}
     }
 }

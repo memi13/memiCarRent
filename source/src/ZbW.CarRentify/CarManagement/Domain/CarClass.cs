@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ZbW.CarRentify.CarManagement.Api;
 using ZbW.CarRentify.Common;
 
 namespace ZbW.CarRentify.CarManagement.Domain
@@ -15,10 +16,24 @@ namespace ZbW.CarRentify.CarManagement.Domain
         public CarClass()
         {
         }
-
         public CarClass(Guid id) : base(id)
         {
+        }
+        public CarClass(Guid id,string name,decimal daileFee) : base(id)
+        {
+            _name = name;
+            _dailyFee = daileFee;
+        }
 
+        public CarClassDto ToDto()
+        {
+            var dto = new CarClassDto();
+            dto.id = this.Id;
+            dto.PublicId = this.PublicId;
+            dto.Name = this._name;
+            dto.DailyFee = this._dailyFee;
+
+            return dto;
         }
     }
 }
