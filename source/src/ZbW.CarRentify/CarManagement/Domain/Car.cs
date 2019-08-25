@@ -43,7 +43,7 @@ namespace ZbW.CarRentify.CarManagement.Domain
 
         public override string ToString()
         {
-            return $"{Id.ToString()};{PublicId.ToString()};{Description};{HorsPower};{InOperationSince.ToString()};{EditFrom};{Edit};{CreateFrom};{Create}";
+            return $"{Id.ToString()};{PublicId.ToString()};{Description};{HorsPower};{InOperationSince.ToString()};{EditFrom};{Edit};{CreateFrom};{Create};{Model.Id.ToString()}";
         }
     }
 }

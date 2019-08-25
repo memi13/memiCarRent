@@ -35,5 +35,9 @@ namespace ZbW.CarRentify.CarManagement.Domain
 
             return dto;
         }
+        public override string ToString()
+        {
+            return $"{Id.ToString()};{PublicId.ToString()};{_name};{_dailyFee};{EditFrom};{Edit};{CreateFrom};{Create}";
+        }
     }
 }

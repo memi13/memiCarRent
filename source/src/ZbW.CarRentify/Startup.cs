@@ -36,8 +36,20 @@ namespace ZbW.CarRentify
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             services.AddScoped<ICarService, CarService>();
             services.AddScoped<ICarRepository, CarRepository>();
+
+            services.AddScoped<ICarClassService, CarClassService>();
+            services.AddScoped<ICarClassRepository, CarClassRepository>();
+
+            services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped<IBrandRepository, BrandRepository>();
+
+            services.AddScoped<IModelService, ModelService>();
+            services.AddScoped<IModelRepository, ModelRepository>();
+
+
             services.AddScoped<IContractService, ContractService>();
             services.AddScoped<IContractReposetory, ContractReposetory>();
             services.AddLogging(x => x.AddConsole());

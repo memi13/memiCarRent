@@ -13,7 +13,6 @@ namespace ZbW.CarRentify.CarManagement.Api
         public CarClass ToObject()
         {
             var obj = new CarClass(id,Name, DailyFee);
-
             return obj;
         }
     }

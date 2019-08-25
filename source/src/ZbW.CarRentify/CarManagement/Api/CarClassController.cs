@@ -20,33 +20,35 @@ namespace ZbW.CarRentify.CarManagement.Api
         }
 
         [HttpGet]
-        public IEnumerable<CarDto> Get()
+        public IEnumerable<CarClassDto> Get()
         {
-            throw new NotImplementedException();
+            var result = _carClassService.Get().Select(x => x.ToDto());
+            return result.ToList();
         }
 
         [HttpGet("{id}", Name = "GetCarClass")]
-        public CarDto Get(Guid id)
+        public CarClassDto Get(Guid id)
         {
-            throw new NotImplementedException();
+            var result = _carClassService.Get(id);
+            return result.ToDto();
         }
 
         [HttpPost]
-        public void Post([FromBody] CarDto car)
+        public void Post([FromBody] CarClassDto car)
         {
-            throw new NotImplementedException();
+           _carClassService.Insert(car.ToObject());
         }
 
         [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody] CarDto car)
+        public void Put(Guid id, [FromBody] CarClassDto carClass)
         {
-            throw new NotImplementedException();
+            _carClassService.Update(carClass.ToObject(),id);
         }
 
         [HttpDelete("{id}")]
         public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+           _carClassService.Delete(id);
         }
     }
 }

@@ -30,14 +30,14 @@ namespace ZbW.CarRentify.Common
             }
         }
 
-        public static void CreatFile(string Header, Car car,string paths,string nameType)
+        public static void CreatFile(string Header, EntityBase basse,string paths,string nameType)
         {
             var csv = new StringBuilder();
             //in your loop
             csv.AppendLine(Header);
-            csv.AppendLine(car.ToString());
+            csv.AppendLine(basse.ToString());
             //after your loop
-            File.WriteAllText(paths + $"{nameType}_{car.Id.ToString()}_.csv", csv.ToString());
+            File.WriteAllText(paths + $"{nameType}_{basse.Id.ToString()}_.csv", csv.ToString());
         }
     }
 }

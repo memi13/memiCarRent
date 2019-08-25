@@ -14,8 +14,4 @@
     <PackageReference Include="NLog.Extensions.Logging" Version="1.5.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CarManagement\Domain\" />
-  </ItemGroup>
-
 </Project>

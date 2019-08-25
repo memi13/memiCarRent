@@ -40,6 +40,10 @@ namespace ZbW.CarRentify.CarManagement.Domain
             dto.CarClassId = this.CarClass.Id;
             return dto;
         }
+        public override string ToString()
+        {
+            return $"{Id.ToString()};{PublicId.ToString()};{Name};{Version};{EditFrom};{Edit};{CreateFrom};{Create};{CarClass.Id.ToString()};{Brand.Id.ToString()}";
+        }
 
     }
 }

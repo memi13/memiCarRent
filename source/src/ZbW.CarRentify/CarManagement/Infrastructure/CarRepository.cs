@@ -28,7 +28,7 @@ namespace ZbW.CarRentify.CarManagement.Infrastructure
 
         public Car Get(Guid id)
         {
-            string[] filePaths = Directory.GetFiles(paths, $"car_{id.ToString()}_.csv");
+            string[] filePaths = Directory.GetFiles(paths, $"Car_{id.ToString()}_.csv");
             if(filePaths.Length>1)
                 throw new ArgumentException("Fehler im File System");
             if (filePaths.Length.Equals(0))
@@ -67,6 +67,7 @@ namespace ZbW.CarRentify.CarManagement.Infrastructure
             entity.Create = oldcar.Create;
             entity.Edit = DateTime.UtcNow;
             entity.EditFrom = "USER";
+            FileSystem.CreatFile(header, entity, paths, "Car");
         }
 
         private Car DataTableToCar(DataTable dt)

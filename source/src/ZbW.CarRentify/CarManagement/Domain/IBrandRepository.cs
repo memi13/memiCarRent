@@ -1,6 +1,8 @@
-﻿namespace ZbW.CarRentify.CarManagement.Domain
+﻿using ZbW.CarRentify.Common;
+
+namespace ZbW.CarRentify.CarManagement.Domain
 {
-    public interface IBrandRepository
+    public interface IBrandRepository: IRepository<Brand>
     {
         
     }
