@@ -30,7 +30,7 @@ namespace ZbW.CarRentify.ReservationMangment.Infastructure
 
         public Employee Get(Guid id)
         {
-            string[] filePaths = Directory.GetFiles(paths, $"Contract_{id.ToString()}_.csv");
+            string[] filePaths = Directory.GetFiles(paths, $"Employee_{id.ToString()}_.csv");
             if (filePaths.Length > 1)
                 throw new ArgumentException("Fehler im File System");
             if (filePaths.Length.Equals(0))
@@ -47,7 +47,7 @@ namespace ZbW.CarRentify.ReservationMangment.Infastructure
             entity.Edit = DateTime.UtcNow;
             entity.CreateFrom = "USER";
             entity.EditFrom = "USER";
-            FileSystem.CreatFile(header, entity, paths, "Contract");
+            FileSystem.CreatFile(header, entity, paths, "Employee");
         }
 
         public void Update(Employee entity)
@@ -57,12 +57,12 @@ namespace ZbW.CarRentify.ReservationMangment.Infastructure
             entity.Create = oldContract.Create;
             entity.Edit = DateTime.UtcNow;
             entity.EditFrom = "USER";
-            FileSystem.CreatFile(header, entity, paths, "Contract");
+            FileSystem.CreatFile(header, entity, paths, "Employee");
         }
 
         public void Delete(Employee entity)
         {
-            File.Delete(paths + $"Contract_{ entity.Id.ToString()}_.csv");
+            File.Delete(paths + $"Employee_{ entity.Id.ToString()}_.csv");
         }
         private Employee DataTableToCarClass(DataTable dt)
         {

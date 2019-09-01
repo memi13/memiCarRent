@@ -38,13 +38,13 @@ namespace ZbW.CarRentify.ReservationMangment.Domain
             reservation.id = Id;
             reservation.PublicId = PublicId;
             reservation.From = From;
-            reservation.UnTil = UnTil;
+            reservation.UnTil = OnTil;
             reservation.Description = Description;
             return reservation;
         }
         public override string ToString()
         {
-            return $"{Id.ToString()};{PublicId.ToString()};{Description};{From};{UnTil};{EditFrom};{Edit};{CreateFrom};{Create};{Car.Id.ToString()};{Employee.Id.ToString()};{Customer.Id.ToString()}";
+            return $"{Id.ToString()};{PublicId.ToString()};{Description};{From};{OnTil};{EditFrom};{Edit};{CreateFrom};{Create};{Car.Id.ToString()};{Employee.Id.ToString()};{Customer.Id.ToString()}";
         }
     }
 }

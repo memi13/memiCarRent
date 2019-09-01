@@ -30,7 +30,7 @@ namespace ZbW.CarRentify.ReservationMangment.Infastructure
 
         public Reservation Get(Guid id)
         {
-            string[] filePaths = Directory.GetFiles(paths, $"Contract_{id.ToString()}_.csv");
+            string[] filePaths = Directory.GetFiles(paths, $"Reservation_{id.ToString()}_.csv");
             if (filePaths.Length > 1)
                 throw new ArgumentException("Fehler im File System");
             if (filePaths.Length.Equals(0))
@@ -47,7 +47,7 @@ namespace ZbW.CarRentify.ReservationMangment.Infastructure
             entity.Edit = DateTime.UtcNow;
             entity.CreateFrom = "USER";
             entity.EditFrom = "USER";
-            FileSystem.CreatFile(header, entity, paths, "Contract");
+            FileSystem.CreatFile(header, entity, paths, "Reservation");
         }
 
         public void Update(Reservation entity)
@@ -57,18 +57,18 @@ namespace ZbW.CarRentify.ReservationMangment.Infastructure
             entity.Create = oldContract.Create;
             entity.Edit = DateTime.UtcNow;
             entity.EditFrom = "USER";
-            FileSystem.CreatFile(header, entity, paths, "Contract");
+            FileSystem.CreatFile(header, entity, paths, "Reservation");
         }
 
         public void Delete(Reservation entity)
         {
-            File.Delete(paths + $"Contract_{ entity.Id.ToString()}_.csv");
+            File.Delete(paths + $"Reservation_{ entity.Id.ToString()}_.csv");
         }
         private Reservation DataTableToCarClass(DataTable dt)
         {
             var row1 = dt.Rows[0];
             var id = row1.ItemArray[0].ToString();
-            var reservation = new Reservation(Guid.Parse(id), new Car(Guid.Parse(row1.ItemArray[9].ToString())), new Employee(Guid.Parse(row1.ItemArray[10].ToString())),new Customer(Guid.Parse(row1.ItemArray[11].ToString())) );
+            var reservation = new Reservation(Guid.Parse(id), new Car(Guid.Parse(row1.ItemArray[9].ToString())),new Customer(Guid.Parse(row1.ItemArray[11].ToString())), new Employee(Guid.Parse(row1.ItemArray[10].ToString())));
             reservation.PublicId = int.Parse(row1.ItemArray[1].ToString());
             reservation.Description = row1.ItemArray[2].ToString();
             reservation.From = DateTime.Parse(row1.ItemArray[3].ToString());

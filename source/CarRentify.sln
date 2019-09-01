@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZbW.CarRentify", "src\ZbW.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZbW.CarRentify.Tests", "tests\ZbW.CarRentify.Tests\ZbW.CarRentify.Tests.csproj", "{192C386E-4DE5-4E65-B5CE-AB164E925703}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zbw.Mime.Tests", "Zbw.Mime.Tests\Zbw.Mime.Tests.csproj", "{638E8DC4-A09B-478F-BE3B-BDEDE7F755CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{192C386E-4DE5-4E65-B5CE-AB164E925703}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{192C386E-4DE5-4E65-B5CE-AB164E925703}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{192C386E-4DE5-4E65-B5CE-AB164E925703}.Release|Any CPU.Build.0 = Release|Any CPU
+		{638E8DC4-A09B-478F-BE3B-BDEDE7F755CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{638E8DC4-A09B-478F-BE3B-BDEDE7F755CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{638E8DC4-A09B-478F-BE3B-BDEDE7F755CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{638E8DC4-A09B-478F-BE3B-BDEDE7F755CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{872C31D6-565E-4B73-97A5-1DE773769CFF} = {DFD17C5F-BE4F-4178-8D58-435FDE4D2B42}
 		{192C386E-4DE5-4E65-B5CE-AB164E925703} = {E1644C0F-966F-44A4-9AF8-FF8DD9BBE564}
+		{638E8DC4-A09B-478F-BE3B-BDEDE7F755CF} = {E1644C0F-966F-44A4-9AF8-FF8DD9BBE564}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CBE67BDE-829F-4798-8AF4-162681AD70C1}

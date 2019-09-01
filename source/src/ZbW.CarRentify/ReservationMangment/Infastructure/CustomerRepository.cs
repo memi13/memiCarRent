@@ -15,7 +15,7 @@ namespace ZbW.CarRentify.ReservationMangment.Infastructure
         public CustomerRepository()
         {
             paths = @"C:\temp\CarRent\Customer\";
-            header = "Id;PublicId;Name;FirstName;Birthday;Status;Sex;EditFrom;Edit;CreateFrom;Create;";
+            header = "Id;PublicId;Name;FirstName;Birthday;Status;Sex;EditFrom;Edit;CreateFrom;Create";
         }
         public IEnumerable<Customer> GetAll()
         {
@@ -30,7 +30,7 @@ namespace ZbW.CarRentify.ReservationMangment.Infastructure
 
         public Customer Get(Guid id)
         {
-            string[] filePaths = Directory.GetFiles(paths, $"Contract_{id.ToString()}_.csv");
+            string[] filePaths = Directory.GetFiles(paths, $"Customer_{id.ToString()}_.csv");
             if (filePaths.Length > 1)
                 throw new ArgumentException("Fehler im File System");
             if (filePaths.Length.Equals(0))
@@ -47,7 +47,7 @@ namespace ZbW.CarRentify.ReservationMangment.Infastructure
             entity.Edit = DateTime.UtcNow;
             entity.CreateFrom = "USER";
             entity.EditFrom = "USER";
-            FileSystem.CreatFile(header, entity, paths, "Contract");
+            FileSystem.CreatFile(header, entity, paths, "Customer");
         }
 
         public void Update(Customer entity)
@@ -57,12 +57,12 @@ namespace ZbW.CarRentify.ReservationMangment.Infastructure
             entity.Create = oldContract.Create;
             entity.Edit = DateTime.UtcNow;
             entity.EditFrom = "USER";
-            FileSystem.CreatFile(header, entity, paths, "Contract");
+            FileSystem.CreatFile(header, entity, paths, "Customer");
         }
 
         public void Delete(Customer entity)
         {
-            File.Delete(paths + $"Contract_{ entity.Id.ToString()}_.csv");
+            File.Delete(paths + $"Customer_{ entity.Id.ToString()}_.csv");
         }
         private Customer DataTableToCarClass(DataTable dt)
         {

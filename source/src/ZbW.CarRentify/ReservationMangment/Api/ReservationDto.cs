@@ -15,7 +15,7 @@ namespace ZbW.CarRentify.ReservationMangment.Api
             var reservation = new Reservation(id);
             reservation.PublicId = PublicId;
             reservation.From = From;
-            reservation.UnTil = UnTil;
+            reservation.OnTil = UnTil;
             reservation.Description = Description;
             return reservation;
         }

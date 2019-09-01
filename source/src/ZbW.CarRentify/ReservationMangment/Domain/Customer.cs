@@ -15,7 +15,19 @@ namespace ZbW.CarRentify.ReservationMangment.Domain
         public  Customer(Guid id) : base(id) { }
         internal CustomerDto ToDto()
         {
-            throw new NotImplementedException();
+            var customer = new CustomerDto();
+            customer.id = Id;
+            customer.PublicId = PublicId;
+            customer.Birthday = Birthday;
+            customer.Name = Name;
+            customer.FirstName = FirstName;
+            customer.Status = Status;
+            customer.Sex = Sex;
+            return customer;
+        }
+        public override string ToString()
+        {
+            return $"{Id.ToString()};{PublicId.ToString()};{Name};{FirstName};{Birthday};{Status};{Sex};{EditFrom};{Edit};{CreateFrom};{Create}";
         }
     }
 }
