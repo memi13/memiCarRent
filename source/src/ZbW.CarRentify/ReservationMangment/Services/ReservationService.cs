@@ -1,34 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Extensions.Logging;
+using ZbW.CarRentify.Common;
+using ZbW.CarRentify.ContractManagment.Domain;
+using ZbW.CarRentify.ContractManagment.Services;
 using ZbW.CarRentify.ReservationMangment.Domain;
+using Reservation = ZbW.CarRentify.ReservationMangment.Domain.Reservation;
 
 namespace ZbW.CarRentify.ReservationMangment.Services
 {
     public class ReservationService:IReservationService
     {
+        private readonly ILogger<ReservationService> _logger;
+        private readonly IReservationRepository _reservationRepository;
+
+        public ReservationService(IReservationRepository reservationRepository, ILogger<ReservationService> logger)
+        {
+            _logger = logger;
+            _reservationRepository = reservationRepository;
+        }
         public List<Reservation> Get()
         {
-            throw new NotImplementedException();
+            var result = _reservationRepository.GetAll();
+            return result.ToList();
         }
 
         public Reservation Get(Guid id)
         {
-            throw new NotImplementedException();
+            var result = _reservationRepository.Get(id);
+            return result;
         }
 
-        public void Update(Reservation car, Guid id)
+        public void Update(Reservation reservation, Guid id)
         {
-            throw new NotImplementedException();
+           if(!id.Equals(reservation.Id))
+                throw  new GuidNotEqualException();
+           _reservationRepository.Update(reservation);
         }
 
-        public void Delete(Guid car)
+        public void Delete(Guid reservation)
         {
-            throw new NotImplementedException();
+          _reservationRepository.Delete(new Reservation(reservation));
         }
 
-        public void Insert(Reservation car)
+        public void Insert(Reservation reservation)
         {
-            throw new NotImplementedException();
+            _reservationRepository.Update(reservation);
         }
     }
 }

@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using ZbW.CarRentify.Common;
-using ZbW.CarRentify.ContractManagment.Domain;
+using ZbW.CarRentify.ReservationMangment.Domain;
 
-namespace ZbW.CarRentify.ContractManagment.Infastructure
+namespace ZbW.CarRentify.ReservationMangment.Infastructure
 {
-    public class ContractRepository:IContractRepository
+    public class EmploeeyRepository:IEmpleeyRepository
     {
         private string paths;
         private string header;
 
-        public ContractRepository()
+        public EmploeeyRepository()
         {
-            paths = @"C:\temp\CarRent\Contract\";
-            header = "Id;PublicId;Description;From;OnTil;EditFrom;Edit;CreateFrom;Create;CarId;ReservationId";
+            paths = @"C:\temp\CarRent\Employee\";
+            header = "Id;PublicId;Name;FirstName;Birthday;Position;Sex;EditFrom;Edit;CreateFrom;Create;";
         }
-        public IEnumerable<Contract> GetAll()
+        public IEnumerable<Employee> GetAll()
         {
-            List<Contract> carrClasses = new List<Contract>();
+            List<Employee> carrClasses = new List<Employee>();
             string[] filePaths = Directory.GetFiles(paths, "*.csv");
             foreach (var path in filePaths)
             {
@@ -28,7 +28,7 @@ namespace ZbW.CarRentify.ContractManagment.Infastructure
             return carrClasses;
         }
 
-        public Contract Get(Guid id)
+        public Employee Get(Guid id)
         {
             string[] filePaths = Directory.GetFiles(paths, $"Contract_{id.ToString()}_.csv");
             if (filePaths.Length > 1)
@@ -41,7 +41,7 @@ namespace ZbW.CarRentify.ContractManagment.Infastructure
             return contract;
         }
 
-        public void Insert(Contract entity)
+        public void Insert(Employee entity)
         {
             entity.Create = DateTime.UtcNow;
             entity.Edit = DateTime.UtcNow;
@@ -50,7 +50,7 @@ namespace ZbW.CarRentify.ContractManagment.Infastructure
             FileSystem.CreatFile(header, entity, paths, "Contract");
         }
 
-        public void Update(Contract entity)
+        public void Update(Employee entity)
         {
             var oldContract = Get(entity.Id);
             entity.CreateFrom = oldContract.CreateFrom;
@@ -60,23 +60,29 @@ namespace ZbW.CarRentify.ContractManagment.Infastructure
             FileSystem.CreatFile(header, entity, paths, "Contract");
         }
 
-        public void Delete(Contract entity)
+        public void Delete(Employee entity)
         {
             File.Delete(paths + $"Contract_{ entity.Id.ToString()}_.csv");
         }
-        private Contract DataTableToCarClass(DataTable dt)
+        private Employee DataTableToCarClass(DataTable dt)
         {
             var row1 = dt.Rows[0];
             var id = row1.ItemArray[0].ToString();
-            var contract = new Contract(Guid.Parse(id),new Car(  Guid.Parse(row1.ItemArray[9].ToString())) , new Reservation( Guid.Parse(row1.ItemArray[10].ToString())));
+            var contract = new Employee(Guid.Parse(id));
             contract.PublicId = int.Parse(row1.ItemArray[1].ToString());
-            contract.Description = row1.ItemArray[2].ToString();
-            contract.From = DateTime.Parse(row1.ItemArray[3].ToString());
-            contract.OnTill = DateTime.Parse(row1.ItemArray[4].ToString());
-            contract.EditFrom = row1.ItemArray[5].ToString();
-            contract.CreateFrom = row1.ItemArray[7].ToString();
-            contract.Edit = DateTime.Parse(row1.ItemArray[6].ToString());
-            contract.Create = DateTime.Parse(row1.ItemArray[8].ToString());
+
+            contract.Name = row1.ItemArray[2].ToString();
+            contract.FirstName = row1.ItemArray[3].ToString();
+
+            contract.Birthday = DateTime.Parse(row1.ItemArray[4].ToString());
+            contract.Position = row1.ItemArray[5].ToString();
+            contract.Sex = row1.ItemArray[6].ToString();
+
+
+            contract.EditFrom = row1.ItemArray[7].ToString();
+            contract.CreateFrom = row1.ItemArray[9].ToString();
+            contract.Edit = DateTime.Parse(row1.ItemArray[8].ToString());
+            contract.Create = DateTime.Parse(row1.ItemArray[10].ToString());
             return contract;
         }
     }

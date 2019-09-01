@@ -20,27 +20,27 @@ namespace ZbW.CarRentify.ContractManagment.Api
         }
 
         [HttpGet]
-        public IEnumerable<ContractDTO> Get()
+        public IEnumerable<ContractDto> Get()
         {
             var result = _contractService.Get().Select(x => x.ToDto());
             return result.ToList();
         }
 
-        [HttpGet("{id}", Name = "GetCarClass")]
-        public ContractDTO Get(Guid id)
+        [HttpGet("{id}", Name = "GetContract")]
+        public ContractDto Get(Guid id)
         {
             var result = _contractService.Get(id);
             return result.ToDto();
         }
 
         [HttpPost]
-        public void Post([FromBody] ContractDTO car)
+        public void Post([FromBody] ContractDto car)
         {
             _contractService.Insert(car.ToObject());
         }
 
         [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody] ContractDTO carClass)
+        public void Put(Guid id, [FromBody] ContractDto carClass)
         {
             _contractService.Update(carClass.ToObject(), id);
         }

@@ -18,6 +18,9 @@ using ZbW.CarRentify.CarManagement.Services;
 using ZbW.CarRentify.ContractManagment.Domain;
 using ZbW.CarRentify.ContractManagment.Infastructure;
 using ZbW.CarRentify.ContractManagment.Services;
+using ZbW.CarRentify.ReservationMangment.Domain;
+using ZbW.CarRentify.ReservationMangment.Infastructure;
+using ZbW.CarRentify.ReservationMangment.Services;
 
 [assembly: InternalsVisibleTo("ZbW.CarRentify.Tests")]
 
@@ -52,6 +55,17 @@ namespace ZbW.CarRentify
 
             services.AddScoped<IContractService, ContractService>();
             services.AddScoped<IContractRepository, ContractRepository>();
+
+
+            services.AddScoped<IReservationService, ReservationService>();
+            services.AddScoped<IReservationRepository, ReservationRepository>();
+
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+
+            services.AddScoped<IEmploeeyService, EmploeeyService>();
+            services.AddScoped<IEmpleeyRepository, EmploeeyRepository>();
+
             services.AddLogging(x => x.AddConsole());
 
             //var serviceProvider = services.BuildServiceProvider();

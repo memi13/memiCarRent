@@ -27,7 +27,7 @@ namespace ZbW.CarRentify.ReservationMangment.Api
             return result;
         }
 
-        [HttpGet("{id}", Name = "GetCar")]
+        [HttpGet("{id}", Name = "GetReservation")]
         public ReservationDto Get(Guid id)
         {
             var result = _reservationService.Get(id).ToDto();
