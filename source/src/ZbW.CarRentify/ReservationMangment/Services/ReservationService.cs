@@ -1,32 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using ZbW.CarRentify.ContractManagment.Domain;
+using ZbW.CarRentify.ReservationMangment.Domain;
 
-namespace ZbW.CarRentify.ContractManagment.Infastructure
+namespace ZbW.CarRentify.ReservationMangment.Services
 {
-    public class ContractReposetory:IContractReposetory
+    public class ReservationService:IReservationService
     {
-        public IEnumerable<Contract> GetAll()
+        public List<Reservation> Get()
         {
             throw new NotImplementedException();
         }
 
-        public Contract Get(Guid id)
+        public Reservation Get(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(Contract entity)
+        public void Update(Reservation car, Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Contract entity)
+        public void Delete(Guid car)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Contract entity)
+        public void Insert(Reservation car)
         {
             throw new NotImplementedException();
         }

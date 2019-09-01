@@ -12,40 +12,43 @@ namespace ZbW.CarRentify.ContractManagment.Api
     [ApiController]
     public class ContractController : ControllerBase
     {
-        private readonly IContractService _contreService;
+        private readonly IContractService _contractService;
 
         public ContractController(IContractService contractService)
         {
-            _contreService = contractService;
+            _contractService = contractService;
         }
+
         [HttpGet]
         public IEnumerable<ContractDTO> Get()
         {
-            return new[] {
-                new ContractDTO {  From = DateTime.Now},
-                new ContractDTO {  From = DateTime.Now }
-            };
+            var result = _contractService.Get().Select(x => x.ToDto());
+            return result.ToList();
         }
 
-        [HttpGet("{id}", Name = "GetContract")]
+        [HttpGet("{id}", Name = "GetCarClass")]
         public ContractDTO Get(Guid id)
         {
-            return new ContractDTO { From = DateTime.Now };
+            var result = _contractService.Get(id);
+            return result.ToDto();
         }
 
         [HttpPost]
         public void Post([FromBody] ContractDTO car)
         {
+            _contractService.Insert(car.ToObject());
         }
 
         [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody] ContractDTO car)
+        public void Put(Guid id, [FromBody] ContractDTO carClass)
         {
+            _contractService.Update(carClass.ToObject(), id);
         }
 
         [HttpDelete("{id}")]
         public void Delete(Guid id)
         {
+            _contractService.Delete(id);
         }
     }
 }

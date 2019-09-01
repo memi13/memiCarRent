@@ -2,7 +2,7 @@
 
 namespace ZbW.CarRentify.ContractManagment.Domain
 {
-    public interface IContractReposetory:IRepository<Contract>
+    public interface IContractRepository:IRepository<Contract>
     {
         
     }

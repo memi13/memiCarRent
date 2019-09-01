@@ -51,7 +51,7 @@ namespace ZbW.CarRentify
 
 
             services.AddScoped<IContractService, ContractService>();
-            services.AddScoped<IContractReposetory, ContractReposetory>();
+            services.AddScoped<IContractRepository, ContractRepository>();
             services.AddLogging(x => x.AddConsole());
 
             //var serviceProvider = services.BuildServiceProvider();
