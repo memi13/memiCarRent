@@ -18,14 +18,16 @@ namespace Zbw.Mime.TestsCarRent
         public void Test1()
         {
             var newList=new List<Car>();
-            newList.Add(new Car());
+            var car = new Car(new Guid(), new Model(new Guid()));
+            car.Description = "Test Auto";
+            newList.Add(car);
             
              var foo = A.Fake<ICarService>(x => x.Strict());
              A.CallTo(() => foo.Get()).Returns(newList);
              var t = new CarController(foo);
              var dd= t.Get().First();
 
-            Assert.That(dd, Is.Empty);
+            Assert.That(dd.Description, Is.EqualTo("Test Auto"));
         }
 
     }
