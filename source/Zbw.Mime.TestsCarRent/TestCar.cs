@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FakeItEasy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using NLog.Extensions.Logging;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using ZbW.CarRentify.CarManagement.Api;
 using ZbW.CarRentify.CarManagement.Domain;
 using ZbW.CarRentify.CarManagement.Services;
