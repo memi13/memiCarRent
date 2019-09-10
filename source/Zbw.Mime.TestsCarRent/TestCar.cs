@@ -30,6 +30,5 @@ namespace Zbw.Mime.TestsCarRent
             Assert.That(dd.Description, Is.EqualTo("Test Auto"));
         }
 
-
     }
 }
